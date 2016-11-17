@@ -19,6 +19,6 @@ public class ConverterController {
     
     @RequestMapping(method = RequestMethod.GET, value = "/")
     public String defaultPage(Model model) {
-        return "home";
+        return "HomePage";
     }
 }
