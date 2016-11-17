@@ -7,6 +7,30 @@
     <body>
         <section layout:fragment="content">
             <h1 th:text="#{test}"></h1>
+            <form method="POST" th:action="'/press'">
+                <div class="row">
+                    <div class="col-sm-6">
+                        <select th:field="*{cur1}">
+                            <option th:each="cur:${currencies}" th:text="${cur.title}" th:value="${cur.id}"></option>
+                        </select>
+                    </div>
+                    <div class="col-sm-6">
+                        <select th:field="*{cur2}">
+                            <option th:each="cur:${currencies}" th:text="${cur.title}" th:value="${cur.id}"></option>
+                        </select>
+                    </div>    
+                </div>
+                <div class="row">
+                    <div class="col-sm-6">
+                        <label th:text="value1"></label>
+                    </div>
+                    <div class="col-sm-6">
+                        <label th:text="value2"></label>
+                    </div>
+                </div>
+                <button type="submit" class="button btn-primary" th:text="#{save}"></button>
+            </form>
+
         </section>
     </body>
 </html>
