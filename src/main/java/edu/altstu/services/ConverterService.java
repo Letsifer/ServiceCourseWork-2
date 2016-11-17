@@ -9,6 +9,11 @@ import java.util.List;
  * @author Евгений
  */
 public interface ConverterService {
+    
+    Currency getCurrency(Integer id);
+    
+    Comparation getComparation(Currency c1, Currency c2);
+    
     List<Currency> getCurrencyies();
     
     List<Comparation> getAllComparations();

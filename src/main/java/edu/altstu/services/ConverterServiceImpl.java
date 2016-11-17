@@ -8,7 +8,6 @@ import edu.altstu.entities.QComparation;
 import edu.altstu.repos.ComparationRepository;
 import java.util.List;
 import javax.persistence.EntityManager;
-import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import edu.altstu.repos.CurrencyRepository;
@@ -49,5 +48,22 @@ public class ConverterServiceImpl implements ConverterService {
     @Override
     public List<Comparation> getAllComparations() {
         return comparationRepository.findAll();
+    }
+
+    @Override
+    public Currency getCurrency(Integer id) {
+        return currencyRepository.findOne(id);
+    }
+
+    @Override
+    public Comparation getComparation(Currency c1, Currency c2) {
+        QComparation comparation = QComparation.comparation;
+        BooleanExpression expression = comparation.first().id.eq(c1.getId()).and(comparation.second().id.eq(c2.getId()));
+        expression = expression.or(comparation.first().id.eq(c2.getId()).and(comparation.second().id.eq(c1.getId())));
+        return new JPAQuery<>(entityManager)
+                .select(comparation)
+                .from(comparation)
+                .where(expression)
+                .fetchOne();
     }
 }
