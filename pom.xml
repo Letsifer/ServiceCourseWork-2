@@ -48,6 +48,11 @@
             <version>${springboot.version}</version>
         </dependency>
         <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>${springboot.version}</version>
+        </dependency>
+        <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
             <scope>runtime</scope>
@@ -124,14 +129,14 @@
             <plugin>
                 <groupId>org.flywaydb</groupId>
                 <artifactId>flyway-maven-plugin</artifactId>
-                <version>4.0</version>
+                <version>4.0.3</version>
                 <configuration>
                     <skip>false</skip>
                     <initVersion>-1</initVersion>
                     <initOnMigrate>true</initOnMigrate>
                     <schemas>
                         <schema>public</schema>
-                        <schema>gate</schema>
+                        <schema>converter</schema>
                         <schema>common</schema>
                     </schemas>
                     <locations>
